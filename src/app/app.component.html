@@ -1,16 +1,16 @@
 <p>Music Player</p>
 
 <div class="row">
-    <div class="column" (click)="showSong=true;">
+    <div class="column" [ngClass]="{'column_color': showSong}" (click)="showSong=true;">
       Songs
     </div>
-    <div class="column" (click)="showSong=false;" >
+    <div class="column" [ngClass]="{'column_color': !showSong}" (click)="showSong=false;" >
       Playlists
     </div>
 </div>
 
 <div class="searchColumn">
-  <input type="text" id="searchInput" (keyup)="searchSong($event)" placeholder="Search for songs.." >
+  <input type="text" id="searchInput" (keyup)="searchSong($event)" placeholder="Search for songs.." *ngIf="showSong" >
 </div>
 
 <div *ngIf="showSong" class="row">
@@ -22,5 +22,19 @@
 </div>
 
 <div *ngIf="!showSong" class="row">
-  Playlist
+
+<div> 
+  <div class="playlistColumn" *ngFor="let list of playlistList">
+    {{list.name}} {{list.createdOn}}
+  </div>
+</div>
+
+<div>
+
+</div>
+
+<div class="createPlaylistcolumn" >
+      Create Playlist
+</div>
+
 </div>

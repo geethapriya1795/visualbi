@@ -11,15 +11,19 @@ export class AppComponent implements OnInit {
   fullSongList;
   songList;
   albumList;
+  playlistList;
 
   constructor(private http: HttpClient) {
 
   }
 
   ngOnInit() {
-    this.showSong = true;
-    this.getSongList();
-    this.getAlbumList();
+    this.showSong = false;
+    // this.getSongList();
+    // this.getAlbumList();
+    this.fullSongList =[];
+    this.songList =[];
+    this.playlistList = localStorage.getItem('playlistList');
   }
 
   getSongList(){

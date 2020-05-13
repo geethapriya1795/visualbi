@@ -14,6 +14,10 @@ p {
     height: 50px;
     border-style: ridge;
   }
+
+  .column_color {
+    background-color: lightgreen;
+  }
   
   .searchColumn {
     float: left;
@@ -35,6 +39,27 @@ p {
     border-style: inset;
   }
 
+  .playlistColumn {
+    float: left;
+    width: 100%;
+    padding: 10px;
+    height: 50px;
+    border-style: inset;
+  }
+
+  .createPlaylistcolumn {
+    text-align:  center;
+    border-style: inset;
+    width: 50%;
+    height: 20px;
+    margin-top: 60px;
+    padding-bottom: 30px;
+    margin-left: 25%
+  }
+  .createPlaylistcolumn:hover {
+    background-color: lightgreen;
+  }
+
   .avatar {
     vertical-align: middle;
     width: 25px;
@@ -43,7 +68,6 @@ p {
   }
 
   #searchInput {
-
   background-position: 10px 12px;
   background-repeat: no-repeat;
   width: 100%;

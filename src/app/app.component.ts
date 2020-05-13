@@ -147,12 +147,18 @@ export class AppComponent implements OnInit {
     document.getElementById("backButton").style.display = "block";
     document.getElementById("backToPlaylistSongButton").style.display = "none";
   }
-
+  
   addSongToPlaylist(song) {
     song['createdOn'] = new Date();
     let currentSong = this.currentPlaylist.songs;
     currentSong.push(song);
     this.currentPlaylist.songs = currentSong;
+    let storageArray = JSON.parse(localStorage.getItem("playlistList"));
+    storageArray.map((data) => {
+      if(data.id == this.currentPlaylist.id)
+        data.songs = currentSong;
+    });
+    localStorage.setItem("playlistList",JSON.stringify(storageArray));
   }
 
   hideDiv(divsToHide , visibility){

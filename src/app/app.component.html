@@ -40,6 +40,7 @@
         <img src="{{song.thumbnailUrl}}" class="avatar" >
         {{song.title}} <br>
         {{getAlbum(song.albumId)}}
+        {{song.createdOn | date: 'MMM d, y, h:mm:ss a'}}
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="column" [ngClass]="{'column_color': showSong}" (click)="showSong=true;">
-      Songs
+      All Songs
     </div>
     <div class="column" [ngClass]="{'column_color': !showSong}" (click)= "showSong = false" >
       Playlists
@@ -34,7 +34,7 @@
     <div>
       <span>{{ currentPlaylist.name }}</span>
       <button id="addButton" class="playlistButton alignright" (click)="addSong()">Add Song</button>
-      <button id="shuffleButton" class="playlistButton alignright">Shuffle Play</button>
+      <button id="shuffleButton" class="playlistButton alignright" (click)="shuffleSong()" >Shuffle Play</button>
     
       <div class="songColumn" *ngFor="let song of currentPlaylist.songs" >
         <img src="{{song.thumbnailUrl}}" class="avatar" >
@@ -46,6 +46,9 @@
   </div>
 
   <div class ="addSongDiv">
+    <!-- <div class="searchColumn">
+      <input type="text" id="searchInput" (keyup)="searchSong($event)" placeholder="Search for songs.." *ngIf="showSong" >
+    </div> -->
     <span>{{ currentPlaylist.name }}</span>
     <div class="songColumn" *ngFor="let song of songList" >
       <img src="{{song.thumbnailUrl}}" class="avatar" >

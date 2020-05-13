@@ -206,6 +206,10 @@ export class AppComponent implements OnInit {
       { divsToHide[i].style.display=visibility;}
   }
 
+  shuffleSong() {
+    this.currentPlaylist.songs = this.shuffle(this.currentPlaylist.songs);
+  }
+
   searchSong(event) {
     let key = event.target.value;
     let data = this.fullSongList.filter((song) => this.strMatch(song.title , key) );
@@ -219,6 +223,11 @@ export class AppComponent implements OnInit {
       return (bDate - aDate);
     })
     return sortedSong;
+  }
+
+  shuffle(songs) {
+    let shuffledSongs = songs.sort(() => Math.random() - 0.5);
+    return shuffledSongs;
   }
 
   sort(arr){

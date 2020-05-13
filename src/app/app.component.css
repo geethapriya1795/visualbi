@@ -78,12 +78,30 @@ p {
     background-color: lightgreen;
   }
 
+  .backToPlaylistSongButton {
+    text-align:  center;
+    border-style: inset;
+    width: 50%;
+    height: 20px;
+    margin-top: 60px;
+    padding-bottom: 30px;
+    margin-left: 25%;
+    display: none;
+  }
+  .backToPlaylistSongButton:hover {
+    background-color: lightgreen;
+  }
+
   .playlistButton:hover {
     background-color: lightgreen;
   }
 
   .playlistSongDiv{
-    visibility: hidden;
+    display: none;
+  }
+
+  .addSongDiv {
+    display: none;
   }
 
   .avatar {

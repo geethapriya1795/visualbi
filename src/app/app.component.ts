@@ -24,7 +24,48 @@ export class AppComponent implements OnInit {
     // this.getSongList();
     // this.getAlbumList();
     this.fullSongList =[];
-    this.songList =[];
+    this.songList =[
+      {
+        "albumId": 1,
+        "id": 1,
+        "title": "accusamus beatae ad facilis cum similique qui sunt",
+        "url": "https://via.placeholder.com/600/92c952",
+        "thumbnailUrl": "https://via.placeholder.com/150/92c952"
+      },
+      {
+        "albumId": 1,
+        "id": 2,
+        "title": "reprehenderit est deserunt velit ipsam",
+        "url": "https://via.placeholder.com/600/771796",
+        "thumbnailUrl": "https://via.placeholder.com/150/771796"
+      },
+      {
+        "albumId": 1,
+        "id": 3,
+        "title": "officia porro iure quia iusto qui ipsa ut modi",
+        "url": "https://via.placeholder.com/600/24f355",
+        "thumbnailUrl": "https://via.placeholder.com/150/24f355"
+      },
+      {
+        "albumId": 1,
+        "id": 4,
+        "title": "culpa odio esse rerum omnis laboriosam voluptate repudiandae",
+        "url": "https://via.placeholder.com/600/d32776",
+        "thumbnailUrl": "https://via.placeholder.com/150/d32776"
+      },
+      {
+        "albumId": 1,
+        "id": 5,
+        "title": "natus nisi omnis corporis facere molestiae rerum in",
+        "url": "https://via.placeholder.com/600/f66b97",
+        "thumbnailUrl": "https://via.placeholder.com/150/f66b97"
+      }];
+    this.albumList = [
+      {
+        "userId": 1,
+        "id": 1,
+        "title": "quidem molestiae enim"
+      }];
     this.playlistList = JSON.parse(localStorage.getItem("playlistList") || "[]");
     this.currentPlaylist = {id: null, name: null, createdOn: null, songs: []};
   }
@@ -69,24 +110,41 @@ export class AppComponent implements OnInit {
   playlistClick(list){
     this.currentPlaylist = list;
     this.currentPlaylistSong = list.song;
-    document.getElementById("playlistColumn").style.display = "none";
-    // this.hideDiv(document.getElementsByClassName("playlistDiv") , "hidden");
-    this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "visible");
+    // document.getElementById("playlistColumn").style.display = "none";
+    this.hideDiv(document.getElementsByClassName("playlistDiv") , "none");
+    this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "block");
     document.getElementById("createButton").style.display = "none";
     document.getElementById("backButton").style.display = "block";
+    document.getElementById("backToPlaylistSongButton").style.display = "none";
   }
 
   backClick() {
     // this.hideDiv(document.getElementsByClassName("playlistDiv") , "visible");
-    this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "hidden");
+    this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "none");
     document.getElementById("createButton").style.display = "block";
     document.getElementById("playlistColumn").style.display = "block";
     document.getElementById("backButton").style.display = "none";
   }
 
+  addSong() {
+    this.hideDiv(document.getElementsByClassName("addSongDiv") , "block");
+    document.getElementById("playlistSongDiv").style.display = "none";
+    document.getElementById("addButton").style.display = "none";
+    document.getElementById("shuffleButton").style.display = "none";
+    document.getElementById("backButton").style.display = "none";
+    document.getElementById("backToPlaylistSongButton").style.display = "block";
+  }
+
+  backtoPlaylistSong() {
+    document.getElementById("playlistSongDiv").style.display = "block";
+    document.getElementById("addButton").style.display = "block";
+    document.getElementById("shuffleButton").style.display = "block";
+    this.hideDiv(document.getElementsByClassName("addSongDiv") , "block");
+  }
+
   hideDiv(divsToHide , visibility){
     for(var i = 0; i < divsToHide.length; i++)
-      { divsToHide[i].style.visibility=visibility;}
+      { divsToHide[i].style.display=visibility;}
   }
 
   searchSong(event) {

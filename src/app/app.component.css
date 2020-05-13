@@ -96,6 +96,10 @@ p {
     background-color: lightgreen;
   }
 
+  .playlistButton:disabled {
+    background-color: lightgrey;
+  }
+
   .playlistSongDiv{
     display: none;
   }

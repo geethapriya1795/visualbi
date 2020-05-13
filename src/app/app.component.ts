@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showSong = false; //change to true geethu
+    this.showSong = true; //change to true geethu
     // this.getSongList();
     // this.getAlbumList();
     this.fullSongList =[];

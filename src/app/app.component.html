@@ -50,7 +50,7 @@
       <img src="{{song.thumbnailUrl}}" class="avatar" >
       {{song.title}} <br>
       {{getAlbum(song.albumId)}} <br>
-      <button id="addSongToPlaylistButton" class="playlistButton alignright" (click)="addSongToPlaylist(song)">Add</button>
+      <button [disabled]="checkSongId(song.id)" id="addSongToPlaylistButton" class="playlistButton alignright" (click)="addSongToPlaylist(song)">Add</button>
     </div>
   </div>
 

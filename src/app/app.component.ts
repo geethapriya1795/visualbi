@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
   albumList;
   playlistList;
   currentPlaylist;
-  currentPlaylistSong;
 
   constructor(private http: HttpClient) {
 
@@ -117,7 +116,6 @@ export class AppComponent implements OnInit {
     document.getElementById("backToPlaylistSongButton").style.display = "none";
 
     this.currentPlaylist = list;
-    // this.currentPlaylistSong = list.song;
     
   }
 
@@ -147,7 +145,7 @@ export class AppComponent implements OnInit {
     document.getElementById("backButton").style.display = "block";
     document.getElementById("backToPlaylistSongButton").style.display = "none";
   }
-  
+
   addSongToPlaylist(song) {
     song['createdOn'] = new Date();
     let currentSong = this.currentPlaylist.songs;
@@ -159,6 +157,11 @@ export class AppComponent implements OnInit {
         data.songs = currentSong;
     });
     localStorage.setItem("playlistList",JSON.stringify(storageArray));
+  }
+
+  checkSongId(id) {
+    let ans = this.currentPlaylist.songs.find((song) => song.id == id);
+    return ans ? true : false;
   }
 
   hideDiv(divsToHide , visibility){

@@ -46,6 +46,13 @@ p {
     overflow: scroll;
   }
 
+  .mainDiv_addSong {
+    float: left;
+    width: 100%;
+    height: 380px;
+    overflow: scroll;
+  }
+
   .playlistColumn {
     float: left;
     width: 100%;

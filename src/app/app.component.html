@@ -9,11 +9,12 @@
     </div>
 </div>
 
-<div class="searchColumn">
+
+
+<div *ngIf="showSong" class="row mainDiv">
+  <div class="searchColumn">
   <input type="text" id="searchInput" (keyup)="searchSong($event)" placeholder="Search for songs.." *ngIf="showSong" >
 </div>
-
-<div *ngIf="showSong" class="row">
   <div class="songColumn" *ngFor="let song of songList" >
       <img src="{{song.thumbnailUrl}}" class="avatar" >
       {{song.title}} <br>
@@ -23,7 +24,7 @@
 
 <div *ngIf="!showSong" class="row">
 
-  <div id="playlistColumn" class="playlistDiv" >
+  <div id="playlistColumn" class="playlistDiv mainDiv" >
     <div class="playlistColumn" *ngFor="let list of playlistList" (click)="playlistClick(list)">
       <p class="alignleft">{{list.name}}</p>
       <p class="alignright">{{list.createdOn | date: 'MMM d, y, h:mm:ss a'}}</p>
@@ -31,11 +32,12 @@
   </div>
   
   <div id = "playlistSong" class="playlistSongDiv">
-    <div>
-      <span>{{ currentPlaylist.name }}</span>
-      <button id="addButton" class="playlistButton alignright" (click)="addSong()">Add Song</button>
-      <button id="shuffleButton" class="playlistButton alignright" (click)="shuffleSong()" >Shuffle Play</button>
-    
+    <div class="mainDiv">
+      <div style="margin-bottom:20px;" >
+        <label style="font-size: 25px;">{{ currentPlaylist.name }}</label>
+        <button id="addButton" class="playlistButton alignright" (click)="addSong()">Add Song</button>
+        <button id="shuffleButton" class="playlistButton alignright" (click)="shuffleSong()" >Shuffle Play</button>
+      </div>
       <div class="songColumn" *ngFor="let song of currentPlaylist.songs" >
         <img src="{{song.thumbnailUrl}}" class="avatar" >
         {{song.title}} <br>
@@ -50,11 +52,13 @@
     <h3 contentEditable="true">{{ currentPlaylist.name }}</h3>
     <!-- <h1>{{ currentPlaylist.name }}</h1> -->
     <input type="text" id="searchInput" (keyup)="searchSong($event)" placeholder="Search for songs.." >
-    <div class="songColumn" *ngFor="let song of songList" >
-      <img src="{{song.thumbnailUrl}}" class="avatar" >
-      {{song.title}} <br>
-      {{getAlbum(song.albumId)}} <br>
-      <button [disabled]="checkSongId(song.id)" id="addSongToPlaylistButton" class="playlistButton alignright" (click)="addSongToPlaylist(song)">Add to List</button>
+    <div class="mainDiv">
+      <div class="songColumn" *ngFor="let song of songList" >
+        <img src="{{song.thumbnailUrl}}" class="avatar" >
+        {{song.title}} <br>
+        {{getAlbum(song.albumId)}} <br>
+        <button [disabled]="checkSongId(song.id)" id="addSongToPlaylistButton" class="playlistButton alignright" (click)="addSongToPlaylist(song)">Add to List</button>
+      </div>
     </div>
   </div>
 

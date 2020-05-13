@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     // this.getAlbumList();
     this.fullSongList =[];
     this.songList =[];
-    this.playlistList = localStorage.getItem('playlistList');
+    this.playlistList = JSON.parse(localStorage.getItem("playlistList") || "[]");
   }
 
   getSongList(){
@@ -43,11 +43,36 @@ export class AppComponent implements OnInit {
     return album.title;
   }
 
+  createPlaylist() {
+    let playlist = JSON.parse(localStorage.getItem("playlistList") || "[]");
+    let num;
+    if(Array.isArray(playlist) && playlist.length) {
+      let sortedList = this.sort(playlist);
+      let lastObj = sortedList[sortedList.length - 1];
+      num = lastObj.id + 1;
+    } else {
+      num = 1;
+    }
+    let newPlaylist = {
+      id : num,
+      name : 'playList'+num,
+      createdOn : '',
+      songs:[]
+    };
+    this.playlistList.push(newPlaylist);
+    localStorage.setItem("playlistList",JSON.stringify(this.playlistList))
+  }
+
   searchSong(event) {
     let key = event.target.value;
     let data = this.fullSongList.filter((song) => this.strMatch(song.title , key) );
     this.songList = data;
 
+  }
+
+  sort(arr){
+    arr.sort((a,b) => (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0)); 
+    return arr;
   }
 
   strMatch(str1: string, str2: string) {

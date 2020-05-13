@@ -24,7 +24,7 @@
 <div *ngIf="!showSong" class="row">
 
 <div> 
-  <div class="playlistColumn" *ngFor="let list of playlistList">
+  <div class="playlistColumn" *ngFor="let list of playlistList" >
     {{list.name}} {{list.createdOn}}
   </div>
 </div>
@@ -33,8 +33,6 @@
 
 </div>
 
-<div class="createPlaylistcolumn" >
-      Create Playlist
-</div>
+<button class="createButton" (click)="createPlaylist()">Create Playlist</button>
 
 </div>

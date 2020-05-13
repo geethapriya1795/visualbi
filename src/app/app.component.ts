@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showSong = true; //change to true geethu
+    this.showSong = false; //change to true geethu
     // this.getSongList();
     // this.getAlbumList();
     this.fullSongList =[];
@@ -188,12 +188,34 @@ export class AppComponent implements OnInit {
     let currentSong = this.currentPlaylist.songs;
     currentSong.push(song);
     this.currentPlaylist.songs = this.sortSongs(currentSong);
+    this.updateLocalStorage(currentSong);
+    // let storageArray = JSON.parse(localStorage.getItem("playlistList"));
+    // storageArray.map((data) => {
+    //   if(data.id == this.currentPlaylist.id)
+    //     data.songs = currentSong;
+    // });
+    // localStorage.setItem("playlistList",JSON.stringify(storageArray));
+  }
+
+  updateLocalStorage(currentSong) {
     let storageArray = JSON.parse(localStorage.getItem("playlistList"));
     storageArray.map((data) => {
       if(data.id == this.currentPlaylist.id)
         data.songs = currentSong;
     });
     localStorage.setItem("playlistList",JSON.stringify(storageArray));
+  }
+
+  deleteSong(song) {
+    let currentSong = this.currentPlaylist.songs;
+    currentSong.forEach((data,index)  => {
+      if(data.id == song.id) {
+        currentSong.splice(index, 1);
+      }
+    });
+    console.log(this.currentPlaylist.songs)
+    this.updateLocalStorage(currentSong)
+
   }
 
   checkSongId(id) {

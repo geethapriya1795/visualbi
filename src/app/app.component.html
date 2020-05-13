@@ -40,7 +40,8 @@
         <img src="{{song.thumbnailUrl}}" class="avatar" >
         {{song.title}} <br>
         {{getAlbum(song.albumId)}}
-        {{song.createdOn | date: 'MMM d, y, h:mm:ss a'}}
+        {{song.createdOn | date: 'MMM d, y, h:mm:ss a'}}<br>
+        <button id="deleteSongButton" class="playlistButton alignright" (click)="deleteSong(song)">Delete</button>
       </div>
     </div>
   </div>
@@ -52,7 +53,7 @@
       <img src="{{song.thumbnailUrl}}" class="avatar" >
       {{song.title}} <br>
       {{getAlbum(song.albumId)}} <br>
-      <button [disabled]="checkSongId(song.id)" id="addSongToPlaylistButton" class="playlistButton alignright" (click)="addSongToPlaylist(song)">Add</button>
+      <button [disabled]="checkSongId(song.id)" id="addSongToPlaylistButton" class="playlistButton alignright" (click)="addSongToPlaylist(song)">Add to List</button>
     </div>
   </div>
 

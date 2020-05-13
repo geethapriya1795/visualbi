@@ -165,6 +165,8 @@ export class AppComponent implements OnInit {
   }
 
   clearSearch(){
+    var input = document.getElementById("createButton");
+    input.value == "";
     document.getElementById("createButton").value = "";
     this.songList = this.fullSongList;
   }

@@ -47,7 +47,8 @@
   </div>
 
   <div class ="addSongDiv">
-    <h1>{{ currentPlaylist.name }}</h1>
+    <h3 contentEditable="true">{{ currentPlaylist.name }}</h3>
+    <!-- <h1>{{ currentPlaylist.name }}</h1> -->
     <input type="text" id="searchInput" (keyup)="searchSong($event)" placeholder="Search for songs.." >
     <div class="songColumn" *ngFor="let song of songList" >
       <img src="{{song.thumbnailUrl}}" class="avatar" >

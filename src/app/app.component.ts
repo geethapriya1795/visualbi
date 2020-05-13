@@ -134,7 +134,7 @@ export class AppComponent implements OnInit {
     }
     let newPlaylist = {
       id : num,
-      name : 'playList'+num,
+      name : 'PlayList '+num,
       createdOn : new Date(),
       songs:[]
     };

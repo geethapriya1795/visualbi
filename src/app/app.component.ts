@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
   showSong:boolean;
+  fullSongList;
   songList;
   albumList;
 
@@ -23,7 +24,9 @@ export class AppComponent implements OnInit {
 
   getSongList(){
     this.http.get("https://jsonplaceholder.typicode.com/photos")
-    .subscribe((data) => this.songList = data);
+    .subscribe((data) => {
+      this.fullSongList = data;
+      this.songList = data; });
   }
 
   getAlbumList(){
@@ -32,8 +35,19 @@ export class AppComponent implements OnInit {
   }
 
   getAlbum(albumId){
-    let album = this.albumList.find((album)=> album.userId == albumId)
+    let album = this.albumList.find((album)=> album.id == albumId)
     return album.title;
   }
+
+  searchSong(event) {
+    let key = event.target.value;
+    let data = this.fullSongList.filter((song) => this.strMatch(song.title , key) );
+    this.songList = data;
+
+  }
+
+  strMatch(str1: string, str2: string) {
+      return (str1).toLowerCase().includes((str2).toLowerCase());
+    }
 
 }

@@ -36,7 +36,7 @@
       <button id="addButton" class="playlistButton alignright" (click)="addSong()">Add Song</button>
       <button id="shuffleButton" class="playlistButton alignright">Shuffle Play</button>
     
-      <div class="songColumn" *ngFor="let song of currentPlaylistSong" >
+      <div class="songColumn" *ngFor="let song of currentPlaylist.songs" >
         <img src="{{song.thumbnailUrl}}" class="avatar" >
         {{song.title}} <br>
         {{getAlbum(song.albumId)}}
@@ -45,6 +45,7 @@
   </div>
 
   <div class ="addSongDiv">
+    <span>{{ currentPlaylist.name }}</span>
     <div class="songColumn" *ngFor="let song of songList" >
       <img src="{{song.thumbnailUrl}}" class="avatar" >
       {{song.title}} <br>

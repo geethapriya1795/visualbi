@@ -117,7 +117,7 @@ export class AppComponent implements OnInit {
     document.getElementById("backToPlaylistSongButton").style.display = "none";
 
     this.currentPlaylist = list;
-    this.currentPlaylistSong = list.song;
+    // this.currentPlaylistSong = list.song;
     
   }
 
@@ -149,7 +149,10 @@ export class AppComponent implements OnInit {
   }
 
   addSongToPlaylist(song) {
-    console.log(song)
+    song['createdOn'] = new Date();
+    let currentSong = this.currentPlaylist.songs;
+    currentSong.push(song);
+    this.currentPlaylist.songs = currentSong;
   }
 
   hideDiv(divsToHide , visibility){

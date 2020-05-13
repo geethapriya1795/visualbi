@@ -78,6 +78,14 @@ p {
     background-color: lightgreen;
   }
 
+  .playlistButton:hover {
+    background-color: lightgreen;
+  }
+
+  .playlistSongDiv{
+    visibility: hidden;
+  }
+
   .avatar {
     vertical-align: middle;
     width: 25px;

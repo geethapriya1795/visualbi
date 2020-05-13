@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   albumList;
   playlistList;
   currentPlaylist;
+  currentPlaylistSong;
 
   constructor(private http: HttpClient) {
 
@@ -25,6 +26,7 @@ export class AppComponent implements OnInit {
     this.fullSongList =[];
     this.songList =[];
     this.playlistList = JSON.parse(localStorage.getItem("playlistList") || "[]");
+    this.currentPlaylist = {id: null, name: null, createdOn: null, songs: []};
   }
 
   getSongList(){
@@ -66,15 +68,25 @@ export class AppComponent implements OnInit {
 
   playlistClick(list){
     this.currentPlaylist = list;
+    this.currentPlaylistSong = list.song;
     document.getElementById("playlistColumn").style.display = "none";
+    // this.hideDiv(document.getElementsByClassName("playlistDiv") , "hidden");
+    this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "visible");
     document.getElementById("createButton").style.display = "none";
     document.getElementById("backButton").style.display = "block";
   }
 
   backClick() {
+    // this.hideDiv(document.getElementsByClassName("playlistDiv") , "visible");
+    this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "hidden");
     document.getElementById("createButton").style.display = "block";
     document.getElementById("playlistColumn").style.display = "block";
     document.getElementById("backButton").style.display = "none";
+  }
+
+  hideDiv(divsToHide , visibility){
+    for(var i = 0; i < divsToHide.length; i++)
+      { divsToHide[i].style.visibility=visibility;}
   }
 
   searchSong(event) {

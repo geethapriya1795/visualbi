@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
   showSong:boolean;
-  showPlaylist:boolean;
   fullSongList;
   songList;
   albumList;
@@ -20,8 +19,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showSong = true; //change to true geethu
-    this.showPlaylist = true;
+    this.showSong = false; //change to true geethu
     // this.getSongList();
     // this.getAlbumList();
     this.fullSongList =[];
@@ -44,11 +42,6 @@ export class AppComponent implements OnInit {
   getAlbum(albumId){
     let album = this.albumList.find((album)=> album.id == albumId)
     return album.title;
-  }
-
-  showPlaylistDiv() {
-    this.showSong = false;
-    // document.getElementById("backButton").style.display = "none";
   }
 
   createPlaylist() {
@@ -88,7 +81,6 @@ export class AppComponent implements OnInit {
     let key = event.target.value;
     let data = this.fullSongList.filter((song) => this.strMatch(song.title , key) );
     this.songList = data;
-
   }
 
   sort(arr){

@@ -100,6 +100,7 @@ export class AppComponent implements OnInit {
   }
 
   backtoPlaylistSong() {
+    this.clearSearch();
     this.hideDiv(document.getElementsByClassName("playlistDiv") , "none");
     this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "block");
     this.hideDiv(document.getElementsByClassName("addSongDiv") , "none");
@@ -161,6 +162,11 @@ export class AppComponent implements OnInit {
     let key = event.target.value;
     let data = this.fullSongList.filter((song) => this.strMatch(song.title , key) );
     this.songList = data;
+  }
+
+  clearSearch(){
+    document.getElementById("createButton").value = "";
+    this.songList = this.fullSongList;
   }
 
   sortSongs (songs) {

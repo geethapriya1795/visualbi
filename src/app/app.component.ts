@@ -108,38 +108,48 @@ export class AppComponent implements OnInit {
   }
 
   playlistClick(list){
-    this.currentPlaylist = list;
-    this.currentPlaylistSong = list.song;
-    // document.getElementById("playlistColumn").style.display = "none";
+
     this.hideDiv(document.getElementsByClassName("playlistDiv") , "none");
     this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "block");
+    this.hideDiv(document.getElementsByClassName("addSongDiv") , "none");
     document.getElementById("createButton").style.display = "none";
     document.getElementById("backButton").style.display = "block";
     document.getElementById("backToPlaylistSongButton").style.display = "none";
+
+    this.currentPlaylist = list;
+    this.currentPlaylistSong = list.song;
+    
   }
 
   backClick() {
-    // this.hideDiv(document.getElementsByClassName("playlistDiv") , "visible");
+    this.hideDiv(document.getElementsByClassName("playlistDiv") , "block");
     this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "none");
+    this.hideDiv(document.getElementsByClassName("addSongDiv") , "none");
     document.getElementById("createButton").style.display = "block";
-    document.getElementById("playlistColumn").style.display = "block";
     document.getElementById("backButton").style.display = "none";
+    document.getElementById("backToPlaylistSongButton").style.display = "none";
   }
 
   addSong() {
+    this.hideDiv(document.getElementsByClassName("playlistDiv") , "none");
+    this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "none");
     this.hideDiv(document.getElementsByClassName("addSongDiv") , "block");
-    document.getElementById("playlistSongDiv").style.display = "none";
-    document.getElementById("addButton").style.display = "none";
-    document.getElementById("shuffleButton").style.display = "none";
+    document.getElementById("createButton").style.display = "none";
     document.getElementById("backButton").style.display = "none";
     document.getElementById("backToPlaylistSongButton").style.display = "block";
   }
 
   backtoPlaylistSong() {
-    document.getElementById("playlistSongDiv").style.display = "block";
-    document.getElementById("addButton").style.display = "block";
-    document.getElementById("shuffleButton").style.display = "block";
-    this.hideDiv(document.getElementsByClassName("addSongDiv") , "block");
+    this.hideDiv(document.getElementsByClassName("playlistDiv") , "none");
+    this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "block");
+    this.hideDiv(document.getElementsByClassName("addSongDiv") , "none");
+    document.getElementById("createButton").style.display = "none";
+    document.getElementById("backButton").style.display = "block";
+    document.getElementById("backToPlaylistSongButton").style.display = "none";
+  }
+
+  addSongToPlaylist(song) {
+    console.log(song)
   }
 
   hideDiv(divsToHide , visibility){

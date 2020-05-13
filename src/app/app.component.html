@@ -48,7 +48,8 @@
     <div class="songColumn" *ngFor="let song of songList" >
       <img src="{{song.thumbnailUrl}}" class="avatar" >
       {{song.title}} <br>
-      {{getAlbum(song.albumId)}}
+      {{getAlbum(song.albumId)}} <br>
+      <button id="addSongToPlaylistButton" class="playlistButton alignright" (click)="addSongToPlaylist(song)">Add</button>
     </div>
   </div>
 

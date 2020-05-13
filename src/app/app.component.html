@@ -4,7 +4,7 @@
     <div class="column" [ngClass]="{'column_color': showSong}" (click)="showSong=true;">
       Songs
     </div>
-    <div class="column" [ngClass]="{'column_color': !showSong}" (click)="showSong=false;" >
+    <div class="column" [ngClass]="{'column_color': !showSong}" (click)= "showPlaylistDiv()" >
       Playlists
     </div>
 </div>
@@ -23,16 +23,22 @@
 
 <div *ngIf="!showSong" class="row">
 
-<div> 
-  <div class="playlistColumn" *ngFor="let list of playlistList" >
-    {{list.name}} {{list.createdOn}}
+  <div id="playlistColumn" >
+    <div class="playlistColumn" *ngFor="let list of playlistList" (click)="playlistClick(list)">
+      <p class="alignleft">{{list.name}}</p>
+      <p class="alignright">{{list.createdOn | date: 'MMM d, y, h:mm:ss a'}}</p>
+    </div>
   </div>
-</div>
+  
+  <div id = "playlistSong">
+    <div class="songColumn" *ngFor="let song of songList" >
+      <img src="{{song.thumbnailUrl}}" class="avatar" >
+      {{song.title}} <br>
+      {{getAlbum(song.albumId)}}
+  </div>
+  </div>
 
-<div>
-
-</div>
-
-<button class="createButton" (click)="createPlaylist()">Create Playlist</button>
+  <button id="createButton" class="createButton" (click)="createPlaylist()">Create Playlist</button>
+  <button id="backButton" class="backButton" (click)="backClick()">Back</button>
 
 </div>

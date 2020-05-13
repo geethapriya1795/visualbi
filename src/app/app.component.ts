@@ -8,17 +8,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
   showSong:boolean;
+  showPlaylist:boolean;
   fullSongList;
   songList;
   albumList;
   playlistList;
+  currentPlaylist;
 
   constructor(private http: HttpClient) {
 
   }
 
   ngOnInit() {
-    this.showSong = false;
+    this.showSong = true; //change to true geethu
+    this.showPlaylist = true;
     // this.getSongList();
     // this.getAlbumList();
     this.fullSongList =[];
@@ -43,6 +46,11 @@ export class AppComponent implements OnInit {
     return album.title;
   }
 
+  showPlaylistDiv() {
+    this.showSong = false;
+    // document.getElementById("backButton").style.display = "none";
+  }
+
   createPlaylist() {
     let playlist = JSON.parse(localStorage.getItem("playlistList") || "[]");
     let num;
@@ -56,11 +64,24 @@ export class AppComponent implements OnInit {
     let newPlaylist = {
       id : num,
       name : 'playList'+num,
-      createdOn : '',
+      createdOn : new Date(),
       songs:[]
     };
     this.playlistList.push(newPlaylist);
     localStorage.setItem("playlistList",JSON.stringify(this.playlistList))
+  }
+
+  playlistClick(list){
+    this.currentPlaylist = list;
+    document.getElementById("playlistColumn").style.display = "none";
+    document.getElementById("createButton").style.display = "none";
+    document.getElementById("backButton").style.display = "block";
+  }
+
+  backClick() {
+    document.getElementById("createButton").style.display = "block";
+    document.getElementById("playlistColumn").style.display = "block";
+    document.getElementById("backButton").style.display = "none";
   }
 
   searchSong(event) {

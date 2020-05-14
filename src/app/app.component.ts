@@ -70,11 +70,13 @@ export class AppComponent implements OnInit {
   playlistClick(list){
 
     this.hideDiv(document.getElementsByClassName("playlistDiv") , "none");
-    this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "block");
+    this.hideDiv(document.getElementsByClassName("playlistDetailDiv") , "block");
     this.hideDiv(document.getElementsByClassName("addSongDiv") , "none");
+    this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "block");
     document.getElementById("createButton").style.display = "none";
     document.getElementById("backButton").style.display = "block";
     document.getElementById("backToPlaylistSongButton").style.display = "none";
+    document.getElementById("searchInput").style.display = "none";
 
     this.currentPlaylist = list;
     this.currentPlaylist.songs = this.sortSongs(list.songs);
@@ -83,8 +85,8 @@ export class AppComponent implements OnInit {
 
   backClick() {
     this.hideDiv(document.getElementsByClassName("playlistDiv") , "block");
-    this.hideDiv(document.getElementsByClassName("playlistSongDiv") , "none");
-    this.hideDiv(document.getElementsByClassName("addSongDiv") , "none");
+    this.hideDiv(document.getElementsByClassName("playlistDetailDiv") , "none");
+    // this.hideDiv(document.getElementsByClassName("addSongDiv") , "none");
     document.getElementById("createButton").style.display = "block";
     document.getElementById("backButton").style.display = "none";
     document.getElementById("backToPlaylistSongButton").style.display = "none";
@@ -97,6 +99,8 @@ export class AppComponent implements OnInit {
     document.getElementById("createButton").style.display = "none";
     document.getElementById("backButton").style.display = "none";
     document.getElementById("backToPlaylistSongButton").style.display = "block";
+    document.getElementById("addButton").style.display = "none";
+    document.getElementById("shuffleButton").style.display = "none";
   }
 
   backtoPlaylistSong() {
@@ -107,6 +111,8 @@ export class AppComponent implements OnInit {
     document.getElementById("createButton").style.display = "none";
     document.getElementById("backButton").style.display = "block";
     document.getElementById("backToPlaylistSongButton").style.display = "none";
+    document.getElementById("addButton").style.display = "block";
+    document.getElementById("shuffleButton").style.display = "block";
   }
 
   addSongToPlaylist(song) {
@@ -192,6 +198,30 @@ export class AppComponent implements OnInit {
 
   strMatch(str1: string, str2: string) {
       return (str1).toLowerCase().includes((str2).toLowerCase());
-    }
+  }
+
+  edit() {
+    this.hideDiv(document.getElementsByClassName("playlistName") , "block");
+    this.hideDiv(document.getElementsByClassName("playlistSave") , "block");
+    this.hideDiv(document.getElementsByClassName("playlistEdit") , "none");
+    document.getElementById("nameLabel").style.display = "none";
+    document.getElementById("playlistName").value = this.currentPlaylist.name;
+  }
+
+  save() {
+    this.hideDiv(document.getElementsByClassName("playlistName") , "none");
+    this.hideDiv(document.getElementsByClassName("playlistSave") , "none");
+    this.hideDiv(document.getElementsByClassName("playlistEdit") , "block");
+    document.getElementById("nameLabel").style.display = "block";
+
+    let playlistName = document.getElementById("playlistName").value;
+    this.currentPlaylist.name = playlistName;
+    let storageArray = JSON.parse(localStorage.getItem("playlistList"));
+    storageArray.map((data) => {
+      if(data.id == this.currentPlaylist.id)
+        data.name = playlistName;
+    });
+    localStorage.setItem("playlistList",JSON.stringify(storageArray));
+  }
 
 }

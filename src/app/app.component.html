@@ -33,15 +33,25 @@
     </div>
   </div>
   
-  <div id = "playlistSong" class="playlistSongDiv">
+  <div id = "playlistSong" class="playlistDetailDiv">
     
-    <div style="margin-bottom:10px;" >
-      <label style="font-size: 25px;">{{ currentPlaylist.name }}<i class="fa fa-edit" style="font-size:24px"></i><i class="fa fa-save playlistSave" style="font-size:20px"></i></label>
-      <input type="text" id="playlistName" class="playlistName">
+    <div style="margin-bottom:10px;" class="functionalDiv" >
+
+      <label id="nameLabel" style="font-size: 25px;">{{ currentPlaylist.name }}<i class="fa fa-edit playlistEdit" style="font-size:24px" (click)="edit()"></i></label>
+
+      <input type="text" id="playlistName" class="playlistName"><i class="fa fa-save playlistSave" style="font-size:20px" (click)="save()"></i>
+
       <button id="addButton" class="playlistButton alignright" (click)="addSong()">Add Song</button>
+
       <button id="shuffleButton" class="playlistButton alignright" (click)="shuffleSong()" >Shuffle Play</button>
+
+      <button id="backToPlaylistSongButton" class="backToPlaylistSongButton alignright playlistButton" (click)="backtoPlaylistSong()">Back to play list</button>
+
+      <input type="text" id="searchInput" (keyup)="searchSong($event)" placeholder="Search for songs.." >
+
     </div>
-    <div class="mainDiv">
+
+    <div class="mainDiv playlistSongDiv">
       <div class="songColumn" *ngFor="let song of currentPlaylist.songs" >
         <img src="{{song.thumbnailUrl}}" class="avatar" >
         {{song.title}} <br>
@@ -50,16 +60,8 @@
         <button id="deleteSongButton" class="playlistButton alignright" (click)="deleteSong(song)">Delete</button>
       </div>
     </div>
-  </div>
 
-  <div class ="addSongDiv">
-    <div class="addSongDetails">
-      <label style="font-size: 25px;">{{ currentPlaylist.name }}<i class="fa fa-edit" style="font-size:20px"></i><i class="fa fa-save playlistSave" style="font-size:20px"></i></label>
-      <input type="text" id="playlistName" class="playlistName">
-      <button id="backToPlaylistSongButton" class="backToPlaylistSongButton alignright playlistButton" (click)="backtoPlaylistSong()">Back to play list</button>
-      <input type="text" id="searchInput" (keyup)="searchSong($event)" placeholder="Search for songs.." >
-    </div>
-    <div class="mainDiv">
+    <div class="mainDiv addSongDiv ">
       <div class="songColumn" *ngFor="let song of songList" >
         <img src="{{song.thumbnailUrl}}" class="avatar" >
         {{song.title}} <br>
@@ -67,7 +69,19 @@
         <button [disabled]="checkSongId(song.id)" id="addSongToPlaylistButton" class="playlistButton alignright" (click)="addSongToPlaylist(song)">Add to List</button>
       </div>
     </div>
+
   </div>
+
+  <!-- <div class ="addSongDiv">
+
+    <div class="addSongDetails">
+      <label id="nameLabel" style="font-size: 25px;">{{ currentPlaylist.name }}<i class="fa fa-edit playlistEdit" style="font-size:24px" (click)="edit()"></i></label>
+      <input type="text" id="playlistName" class="playlistName"><i class="fa fa-save playlistSave" style="font-size:20px" (click)="save()"></i>
+      <button id="backToPlaylistSongButton" class="backToPlaylistSongButton alignright playlistButton" (click)="backtoPlaylistSong()">Back to play list</button>
+      <input type="text" id="searchInput" (keyup)="searchSong($event)" placeholder="Search for songs.." >
+    </div>
+
+  </div> -->
 
   <button id="createButton" class="createButton" (click)="createPlaylist()">Create Playlist</button>
   <button id="backButton" class="backButton" (click)="backClick()">Back</button>

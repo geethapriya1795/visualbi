@@ -122,6 +122,10 @@ p {
     display: none;
   }
 
+  .playlistDetailDiv {
+    display: none;
+  }
+
   .addSongDiv {
     display: none;
   }

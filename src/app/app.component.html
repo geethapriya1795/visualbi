@@ -4,7 +4,7 @@
     <div class="column" [ngClass]="{'column_color': showSong}" (click)="showSong=true;">
       All Songs
     </div>
-    <div class="column" [ngClass]="{'column_color': !showSong}" (click)= "showSong = false" >
+    <div class="column" [ngClass]="{'column_color': !showSong}" (click)= "showSong = false; clearSearch();" >
       Playlists
     </div>
 </div>
@@ -21,6 +21,7 @@
         {{song.title}} <br>
         {{getAlbum(song.albumId)}}
     </div>
+    <label *ngIf="noResults" >No Results Found</label>
   </div>
 </div>
 
@@ -68,6 +69,7 @@
         {{getAlbum(song.albumId)}} <br>
         <button [disabled]="checkSongId(song.id)" id="addSongToPlaylistButton" class="playlistButton alignright" (click)="addSongToPlaylist(song)">Add to List</button>
       </div>
+      <label *ngIf="noResults" >No Results Found</label>
     </div>
 
   </div>

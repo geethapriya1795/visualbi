@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   albumList;
   playlistList;
   currentPlaylist;
+  noResults;
 
   constructor(private http: HttpClient) {
 
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.showSong = true; //change to true geethu
+    this.noResults = false;
     this.getSongList();
     this.getAlbumList();
     this.fullSongList =[];
@@ -164,13 +166,13 @@ export class AppComponent implements OnInit {
     let key = event.target.value;
     let data = this.fullSongList.filter((song) => this.strMatch(song.title , key) );
     this.songList = data;
+    data.length ? this.noResults = false : this.noResults = true ;
   }
 
   clearSearch(){
-    var input = document.getElementById("createButton");
-    input.value == "";
-    document.getElementById("createButton").value = "";
+    document.getElementById("searchInput").value = "";
     this.songList = this.fullSongList;
+    this.noResults = false;
   }
 
   sortSongs (songs) {

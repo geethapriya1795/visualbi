@@ -23,7 +23,8 @@ p {
     float: left;
     width: 100%;
     padding: 10px 10px 10px 1px;
-    height: 70px;
+    height: 50px;
+    margin-bottom: 12px;
   }
 
   .row:after {
@@ -42,16 +43,17 @@ p {
   .mainDiv { 
     float: left;
     width: 100%;
-    height: 450px;
+    height: 380px;
     overflow: scroll;
+    margin-top: 10px;
   }
-
+/* 
   .mainDiv_addSong {
     float: left;
     width: 100%;
     height: 380px;
     overflow: scroll;
-  }
+  } */
 
   .playlistColumn {
     float: left;
@@ -93,7 +95,7 @@ p {
     background-color: lightgreen;
   }
 
-  .backToPlaylistSongButton {
+  /* .backToPlaylistSongButton {
     text-align:  center;
     border-style: inset;
     width: 50%;
@@ -102,10 +104,10 @@ p {
     padding-bottom: 30px;
     margin-left: 25%;
     display: none;
-  }
-  .backToPlaylistSongButton:hover {
+  } */
+  /* .backToPlaylistSongButton:hover {
     background-color: lightgreen;
-  }
+  } */
 
   .playlistButton:hover {
     background-color: lightgreen;
@@ -116,7 +118,7 @@ p {
   }
 
   .playlistSongDiv{
-    margin-top: 20px;
+    margin-top: 10px;
     display: none;
   }
 
@@ -138,7 +140,7 @@ p {
   font-size: 16px;
   padding: 12px 20px 12px 8px;
   border: 1px solid #ddd;
-  margin-bottom: 12px;
+  margin-top: 10px;
 }
 
 .alignleft {
@@ -146,4 +148,8 @@ p {
 }
 .alignright {
 	float: right;
+}
+
+.addSongDetails {
+  margin-top: 10px;
 }

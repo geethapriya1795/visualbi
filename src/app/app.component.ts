@@ -101,6 +101,7 @@ export class AppComponent implements OnInit {
     document.getElementById("backToPlaylistSongButton").style.display = "block";
     document.getElementById("addButton").style.display = "none";
     document.getElementById("shuffleButton").style.display = "none";
+    document.getElementById("searchInput").style.display = "block";
   }
 
   backtoPlaylistSong() {
@@ -113,6 +114,7 @@ export class AppComponent implements OnInit {
     document.getElementById("backToPlaylistSongButton").style.display = "none";
     document.getElementById("addButton").style.display = "block";
     document.getElementById("shuffleButton").style.display = "block";
+    document.getElementById("searchInput").style.display = "none";
   }
 
   addSongToPlaylist(song) {

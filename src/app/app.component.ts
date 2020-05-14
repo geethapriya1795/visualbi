@@ -122,20 +122,14 @@ export class AppComponent implements OnInit {
     let currentSong = this.currentPlaylist.songs;
     currentSong.push(song);
     this.currentPlaylist.songs = this.sortSongs(currentSong);
-    this.updateLocalStorage(currentSong);
-    // let storageArray = JSON.parse(localStorage.getItem("playlistList"));
-    // storageArray.map((data) => {
-    //   if(data.id == this.currentPlaylist.id)
-    //     data.songs = currentSong;
-    // });
-    // localStorage.setItem("playlistList",JSON.stringify(storageArray));
+    this.updateLocalStorage(currentSong, 'songs');
   }
 
-  updateLocalStorage(currentSong) {
+  updateLocalStorage(record, property) {
     let storageArray = JSON.parse(localStorage.getItem("playlistList"));
     storageArray.map((data) => {
       if(data.id == this.currentPlaylist.id)
-        data.songs = currentSong;
+        data[property] = record;
     });
     localStorage.setItem("playlistList",JSON.stringify(storageArray));
   }
@@ -148,7 +142,7 @@ export class AppComponent implements OnInit {
       }
     });
     console.log(this.currentPlaylist.songs)
-    this.updateLocalStorage(currentSong)
+    this.updateLocalStorage(currentSong , 'songs')
 
   }
 
@@ -202,6 +196,17 @@ export class AppComponent implements OnInit {
       return (str1).toLowerCase().includes((str2).toLowerCase());
   }
 
+  checkPlaylistExist(name) {
+    if(this.strMatch(name, this.currentPlaylist.name)) {
+      return false;
+    } else {
+      let ans = this.playlistList.find((data) => this.strMatch(data.name, name));
+      console.log(ans)
+      return ans ? true : false;
+    }
+    
+  }
+
   edit() {
     this.hideDiv(document.getElementsByClassName("playlistName") , "block");
     this.hideDiv(document.getElementsByClassName("playlistSave") , "block");
@@ -211,19 +216,20 @@ export class AppComponent implements OnInit {
   }
 
   save() {
-    this.hideDiv(document.getElementsByClassName("playlistName") , "none");
-    this.hideDiv(document.getElementsByClassName("playlistSave") , "none");
-    this.hideDiv(document.getElementsByClassName("playlistEdit") , "block");
-    document.getElementById("nameLabel").style.display = "block";
-
     let playlistName = document.getElementById("playlistName").value;
-    this.currentPlaylist.name = playlistName;
-    let storageArray = JSON.parse(localStorage.getItem("playlistList"));
-    storageArray.map((data) => {
-      if(data.id == this.currentPlaylist.id)
-        data.name = playlistName;
-    });
-    localStorage.setItem("playlistList",JSON.stringify(storageArray));
+    if(!playlistName) {
+      alert("Please enter valid name");
+    } else if(this.checkPlaylistExist(playlistName)) {
+      alert("Playlist already exist");
+    } else {
+      this.hideDiv(document.getElementsByClassName("playlistName") , "none");
+      this.hideDiv(document.getElementsByClassName("playlistSave") , "none");
+      this.hideDiv(document.getElementsByClassName("playlistEdit") , "block");
+      document.getElementById("nameLabel").style.display = "block";
+      this.currentPlaylist.name = playlistName;
+      this.updateLocalStorage(playlistName , 'name');
+    }
+    
   }
 
 }

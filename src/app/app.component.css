@@ -150,6 +150,14 @@ p {
 	float: right;
 }
 
+.playlistName {
+  display: none;
+}
+
+.playlistSave {
+  display: none;
+}
+
 .addSongDetails {
   margin-top: 10px;
 }

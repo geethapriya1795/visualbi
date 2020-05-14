@@ -36,7 +36,8 @@
   <div id = "playlistSong" class="playlistSongDiv">
     
     <div style="margin-bottom:10px;" >
-      <label class='playlistName' style="font-size: 25px;">{{ currentPlaylist.name }}<i class="fa fa-edit" style="font-size:24px"></i></label>
+      <label style="font-size: 25px;">{{ currentPlaylist.name }}<i class="fa fa-edit" style="font-size:24px"></i><i class="fa fa-save playlistSave" style="font-size:20px"></i></label>
+      <input type="text" id="playlistName" class="playlistName">
       <button id="addButton" class="playlistButton alignright" (click)="addSong()">Add Song</button>
       <button id="shuffleButton" class="playlistButton alignright" (click)="shuffleSong()" >Shuffle Play</button>
     </div>
@@ -53,7 +54,8 @@
 
   <div class ="addSongDiv">
     <div class="addSongDetails">
-      <label class='playlistName' style="font-size: 25px;">{{ currentPlaylist.name }}<i class="fa fa-edit" style="font-size:24px"></i></label>
+      <label style="font-size: 25px;">{{ currentPlaylist.name }}<i class="fa fa-edit" style="font-size:20px"></i><i class="fa fa-save playlistSave" style="font-size:20px"></i></label>
+      <input type="text" id="playlistName" class="playlistName">
       <button id="backToPlaylistSongButton" class="backToPlaylistSongButton alignright playlistButton" (click)="backtoPlaylistSong()">Back to play list</button>
       <input type="text" id="searchInput" (keyup)="searchSong($event)" placeholder="Search for songs.." >
     </div>

@@ -157,6 +157,7 @@ p {
 
 .playlistName {
   display: none;
+  width: 20%;
 }
 
 .playlistSave {

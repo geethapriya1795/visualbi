@@ -37,10 +37,10 @@
   <div id = "playlistSong" class="playlistDetailDiv">
     
     <div style="margin-top:10px;" class="functionalDiv" >
-
-      <label id="nameLabel" style="font-size: 25px;">{{ currentPlaylist.name }}<i class="fa fa-edit playlistEdit" style="font-size:20px" (click)="edit()"></i></label>
-
-      <input type="text" id="playlistName" class="playlistName"><i class="fa fa-save playlistSave" style="font-size:20px" (click)="save()"></i>
+      <label id="nameLabel" style="font-size: 25px;">{{ currentPlaylist.name }}</label>
+      <i class="fa fa-edit playlistEdit" style="font-size:20px" (click)="edit()"></i>
+      <input type="text" id="playlistName" class="playlistName">
+      <i class="fa fa-save playlistSave" style="font-size:20px" (click)="save()"></i>
 
       <button id="addButton" class="playlistButton alignright" (click)="addSong()">Add Song</button>
 

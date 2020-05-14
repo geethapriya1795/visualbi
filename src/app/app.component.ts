@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showSong = true; //change to true geethu
+    this.showSong = true;
     this.noResults = false;
     this.getSongList();
     this.getAlbumList();
@@ -88,7 +88,6 @@ export class AppComponent implements OnInit {
   backClick() {
     this.hideDiv(document.getElementsByClassName("playlistDiv") , "block");
     this.hideDiv(document.getElementsByClassName("playlistDetailDiv") , "none");
-    // this.hideDiv(document.getElementsByClassName("addSongDiv") , "none");
     document.getElementById("createButton").style.display = "block";
     document.getElementById("backButton").style.display = "none";
     document.getElementById("backToPlaylistSongButton").style.display = "none";
